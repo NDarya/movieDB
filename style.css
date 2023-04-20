@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+body {
+  background-color: #1C2233;
+}
+
+.container {
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.item a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.item img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.logo {
+  width: 129px;
+  height: 31px;
+}
+
+.social {
+  width: 126px;
+  height: 15px;
+}
+
+.middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFFFFF;
+  transition: all .2s ease .5s;
+}
+
+a:hover {
+  text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.searchBtn {
+  width: 55px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+}
+
+.searchBtn img {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.signIn {
+  width: 138px;
+  height: 53px;
+  background: #3657CB;
+  transition: all 0.5s ease;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.signIn:hover {
+  box-shadow: 0px 0px 15px rgba(72, 113, 255, 0.8);
+}
+
+.h2 {
+  font-weight: 900;
+  font-size: 65px;
+}
+
+.nowGenres {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.line {
+  border: 2px solid #FFFFFF;
+  width: 51px;
+  height: 0px;
+}
+
+.movieDet {
+  align-items: flex-start;
+
+}
+
+.poster {
+  max-width: 410px;
+  height: 560px;
+}
+
+.poster img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.movieDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+  color: #FFFFFF;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 65px;
+
+}
+
+.movieDetails span {
+  font-weight: 500;
+  font-size: 25px;
+}
+
+.movieDetails p {
+  font-weight: 500;
+  font-size: 20px;
+
+}
+
+.trailer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.trailerBtn {
+  width: 260px;
+  height: 71px;
+  border: 2px solid #FFFFFF;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+}
