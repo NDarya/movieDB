@@ -1,11 +1,11 @@
-
+import axios from 'axios';
 import headerCreater from '/modules/header.js';
 
 headerCreater()
 let cont = document.createElement('div')
 const movieId = location.search.split('=').at(-1)
 
-axios.get('http://localhost:5173/pages/movieinfo.html?id=' + movieId)
+axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=353ff6e4a7bd2c7e81c13ef415f0c2dc&language=en-US`)
 .then(res => console.log(res))
 
 function reload(arr, place) {
