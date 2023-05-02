@@ -14,3 +14,4 @@ getData('/movie/popular')
         body.style.backgroundImage = `url(${import.meta.env.VITE_BASE_IMG + item.backdrop_path})`
     })
 
+    
