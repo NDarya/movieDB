@@ -1,9 +1,13 @@
+import { getData } from './http';
+
 export function headerCreate(place) {
 	place.innerHTML = ''
 	place.innerHTML = `
 		<div class="left">
-			<img src="/public/images/logo.svg" alt="image">
-			<img src="/public/icons/menu.svg" alt="image">
+			<a href='/'>
+				<img src="/public/images/logo.svg" alt="image">
+			</a>
+			<img src="/public/images/menu.svg" alt="image">
 		</div>
 		<nav>
 			<a href="#">Афиша</a>
@@ -21,171 +25,86 @@ export function headerCreate(place) {
 			<button>Войти</button>
 		</div>
     `
+	
 }
 
+let genres
+
+getData('/genre/movie/list')
+	.then(({ data }) => genres = data.genres)
 
 export function reload(arr, place) {
-    place.innerHTML = ''
-    for (let item of arr) {
-        place.innerHTML += `
-            <div class="movie-card" >
-                <div class="image">
-                    <img src="${import.meta.env.VITE_BASE_IMG + item.poster_path}" alt="image">
-                    <span>${item.vote_average}</span>
+	place.innerHTML = ''
+	for (let item of arr) {
+		let genre_str = ''
+		for (let genre of genres) {
+			for (let id of item.genre_ids) {
+				if(id === genre.id){
+					genre_str += ` ${genre.name},`
+				}
+			}
+		}
+		place.innerHTML += `
+			<div class="movie-card" >
+				<div class="image">
+					<img src="${import.meta.env.VITE_BASE_IMG + item.poster_path}" alt="image">
+					<span>${item.vote_average}</span>
 					<a href="/pages/movieid.html?id=${item.id}">
-                    	<button>Карточка фильма</button>
+						<button>Карточка фильма</button>
 					</a>
-                </div>
-                <div class="name__genre">
-                    <p>${item.title}</p>
-                    <p>${item.genre_ids}</p>
-                </div>
-            </div>
-	// 		<div class="modal hide" data-close id="modal_login" >
-    //     	<div class="modal__dialog">
-    //         <div class="modal__content" data-tabs="0" >
-    //             <form action="#" name="signup" >
-    //                 <div data-close class="modal__close">&times;</div>
-    //                 <div class="modal__title">Войти</div>
-    //                 <input required placeholder="Логин, почта или телефон" name="name" type="text" class="modal__input">
-    //                 <input required placeholder="Ваш пароль" name="surname" type="text" class="modal__input">
-    //                 <input required placeholder="Ваш пароль" name="password" type="password" class="modal__input">
-    //                 <button type="submit" class="btn btn_yellow">Войти</button>
-	// 				<button class="btn btn_dark" data-reg >Зарегистрироваться</button>
-	// 				<a href="#">Восстановить пароль</a>
-	// 				<img src="./public/icons/menu.svg" alt="">
-    //             </form>
-    //         </div>
-	// 		<div class="modal__content hide" data-tabs="1" >
-    //             <form action="#" name="signin" >
-    //                 <div data-close class="modal__close">&times;</div>
-    //                 <div class="modal__title">Зарегистрироваться</div>
-    //                 <input required placeholder="email" name="email" type="email" class="modal__input">
-	// 				<input required placeholder="Придумайте пароль" name="password" type="password" class="modal__input">
-					
-					
-    //                	<button class="btn btn_dark" data-log >Войти</button>
-
-	// 				<button type="submit" class="btn btn_yellow">Зарегистрироваться</button>
-					
-    //             </form>
-    //         </div>
-    //     </div>
-    // </div>
-	// 		<div class="modal hide">
-    //     	<div class="modal__dialog">
-    //         <div class="modal__content">
-    //             <form action="#">
-    //                 <div data-close class="modal__close"></div>
-    //                 <div class="modal__title">Зарегистрироваться</div>
-    //                 <input required placeholder="Имя" name="name" type="text" class="modal__input">
-    //                 <input required placeholder="Фамилия" name="surname" type="text class="modal__input">
-	// 				<input required placeholder="Придумайте логин" name="cr_login" type="phone" class="modal__input">
-	// 				<input required placeholder="Придумайте пароль" name="password" type="phone" class="modal__input">
-	// 				<input required placeholder="Повторите пароль" name="rep_password" type="phone" class="modal__input">
-	// 				<input required placeholder="Номер телефона или e-mail" name="email" type="email" class="modal__input">
-                   
-
-	// 				<ul>
-	// 					<li>
-	// 						<input type="radio" name="radio" id="">Соглашаюсь на условия политики конфиденциальности
-	// 					</li>
-	// 				<li>
-	// 					<input type="radio" name="radio" id="">Соглашаюсь на обработку персональных данных
-	// 				</li>
-                    
-	// 			</ul>
-	// 				<button class=" btn btn_yellow">Зарегистрироваться</button>
-					
-    //             </form>
-    //         </div>
-    //     </div>
-    // </div>
-    //         `
-
-	// let login_btn = document.querySelector('.log')
-	// let modal = document.querySelector('#modal_login')
-	// let close_modal = document.querySelectorAll('[data-close]')
-	// let modal__content = modal.querySelectorAll('.modal__content')
-	// let data_reg_btn = document.querySelector('[data-reg]')
-	// let data_log_btn = document.querySelector('[data-log]')
-	// let signUp_form = document.forms.signup
-	// let signIn_form = document.forms.signin
-	
-	// signUp_form.onsubmit = (e) => {
-	// 	e.preventDefault()
-
-	// 	let user = {}
-
-	// 	let fm = new FormData(signUp_form)
-
-	// 	fm.forEach((value, key) => {
-	// 		user[key] = value
-	// 	})
-
-	// 	signUp(user)
-	// 		.then(res => console.log(res))
-	// }
-
-	// signIn_form.onsubmit = (e) => {
-	// 	e.preventDefault()
-
-	// 	let user = {}
-
-	// 	let fm = new FormData(signIn_form)
-
-	// 	fm.forEach((value, key) => {
-	// 		user[key] = value
-	// 	})
-
-	// 	signIn(user)
-	// 		.then(res => console.log(res))
-	// }
-
-	// data_reg_btn.onclick = () => {
-	// 	modal__content[1].classList.remove('hide')
-	// 	modal__content[0].classList.add('hide')
-	// }
-	// data_log_btn.onclick = () => {
-	// 	modal__content[0].classList.remove('hide')
-	// 	modal__content[1].classList.add('hide')
-	// }
-
-	// login_btn.onclick = () => {
-	// 	modal.classList.remove('hide')
-	// }
-
-	// close_modal.forEach(btn => {
-	// 	btn.onclick = (e) => {
-	// 		let isCloseElement = e.target.getAttribute('data-close') ?? "there is no data-attribute"
-
-	// 		if(!isCloseElement) {
-	// 			modal.classList.add('hide')
-	// 		}
-	// 	}
-	// })
-
+				</div>
+				<div class="name__genre">
+					<p>${item.title}</p>
+					<p>${genre_str}</p>
+				</div>
+			</div>
+			`
+	}
 }
 
-place.innerHTML = ''
-    for (let item of arr) {
-        place.innerHTML += `
-            <div class="movie-card" >
-                <div class="image">
-                    <img src="${import.meta.env.VITE_BASE_IMG + item.poster_path}" alt="image">
-                    <span>${item.vote_average}</span>
-					<a href="/pages/movieid.html?id=${item.id}">
-                    	<button>Карточка фильма</button>
-					</a>
-                </div>
-                <div class="name__genre">
-                    <p>${item.title}</p>
-                    <p>${item.genre_ids}</p>
-                </div>
-            </div>
-            `
-    }
+export function reloadTrailerCart(arr, place) {
+	place.innerHTML = ''
+	for (let item of arr) {
+		place.innerHTML += `
+		<div class="trailers__footer-item" data-id='${item.id}'>
+			<div class="trailers__vid trailers__vid_mini">
+				<img class="trailers__iframe trailers__iframe_small" src="${import.meta.env.VITE_BASE_IMG + item.poster_path}" alt='image'>
+				<img class="trailers_play-icon trailers_play-icon_mini" src="/public/icons/play.svg" alt="icon">
+			</div>
+			<p class="trailers__title trailers__title_small">${item.title.split('.').at(0)}</p>
+		</div>
+		`
+	}
 }
 
-
-
+export function reloadPopularPerson(arr, place) {
+	place.innerHTML = ''
+	if (arr.length === 2) {
+		for (let item of arr) {
+			place.innerHTML += `
+			<div class="popular-persons__box">
+				<img class="popular-persons__photo" src="${import.meta.env.VITE_BASE_IMG + item.profile_path}" alt="image">
+				<div class="popular-persons__num">${arr.indexOf(item) + 1}-е место</div>
+				<div class="popular-persons__box-item">
+					<div class="popular-persons__name">${item.name}</div>
+					<div class="popular-persons__name_eng">${item.name}</div>
+					<div class="popular-persons__age">${item.age}</div>
+				</div>
+			</div>
+			`
+		}
+	} else {
+		for (let item of arr) {
+			place.innerHTML += `
+		<div class="popular-persons__cart">
+			<div class="popular-persons__cart-item">
+				<div class="popular-persons__name">${item.name}</div>
+				<div class="popular-persons__name_eng">${item.name}</div>
+				<div class="popular-persons__age">${item.age}</div>
+			</div>
+			<div class="popular-persons__num">${arr.indexOf(item) + 3}-е место</div>
+		</div>
+		`
+		}
+	}
+}
